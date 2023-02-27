@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Primary view
+Route::view('/', 'index')->name('login')->middleware('guest');
+
+
+//Register view
+Route::view('/register', 'register');
+Route::post('register-user', RegisterUserController::class);
