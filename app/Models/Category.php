@@ -10,6 +10,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'name'
+    ];
+
     public function threads(): HasMany
     {
         return $this->hasMany(Thread::class);
