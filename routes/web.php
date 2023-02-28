@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ThreadsPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterUserController;
 
@@ -34,3 +35,4 @@ Route::get('logout', LogoutController::class);
 //Views
 Route::get('home', HomePageController::class)->middleware('auth');
 Route::get('/login')->middleware('guest');
+Route::get('/forum/{category}', ThreadsPageController::class)->middleware('auth');
