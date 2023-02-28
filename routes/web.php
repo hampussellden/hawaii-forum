@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterUserController;
 
@@ -21,7 +22,11 @@ Route::view('/', 'index')->name('login')->middleware('guest');
 
 //Register view
 Route::view('/register', 'register');
+Route::post('register-user', RegisterUserController::class);
+
+//Login
 Route::view('/home', 'home')->middleware('auth');
 Route::post('login', LoginController::class);
-// Route::view('home',HomeController::class)->middleware('auth');
-Route::post('register-user', RegisterUserController::class);
+
+//Logout
+Route::get('logout', LogoutController::class);

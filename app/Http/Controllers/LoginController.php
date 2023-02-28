@@ -18,12 +18,10 @@ class LoginController extends Controller
     {
         // $credentials = $request->validate(['email' => ['required', 'email'], 'password' => 'required']);
         $credentials = $request->only(['email', 'password']);
-        var_dump($credentials);
         if (Auth::attempt($credentials)) {
-            echo 'hej';
             $request->session()->regenerate();
             return Redirect::intended('home');
         }
-        // return Redirect::back()->withErrors(['errors' => 'Something went wrong, please try again!']);
+        return Redirect::back()->withErrors(['errors' => 'Something went wrong, please try again!']);
     }
 }
