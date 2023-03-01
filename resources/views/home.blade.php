@@ -4,7 +4,7 @@
 <main>
 @foreach ($categories as $category)
     <article>
-        <a href="/forum/{{$category->name}}">
+        <a href="/categories/{{$category->name}}/threads/{{$category->id}}">
             <h3>{{Str::ucfirst($category->name)}}</h3>
         </a>
     </article>
