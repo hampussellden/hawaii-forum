@@ -4,8 +4,8 @@
 <main>
 @foreach ($categories as $category)
     <article>
-        <a href="/forum/<?= Str::of($category->name)->lower(); ?>">
-            <h3>{{$category->name}}</h3>
+        <a href="/forum/{{$category->name}}">
+            <h3>{{Str::ucfirst($category->name)}}</h3>
         </a>
     </article>
 @endforeach

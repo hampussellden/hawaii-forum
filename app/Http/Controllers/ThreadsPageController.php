@@ -15,7 +15,7 @@ class ThreadsPageController extends Controller
     public function __invoke(Request $request)
     {
         if (Auth::check()) {
-            $category = ucfirst(explode('/', $request->path())[1]);
+            $category = explode('/', $request->path())[1];
             $category_id = DB::select("select id from categories where name = :category", ['category' => $category]);
             $category_id = last($category_id)->id;
             $user = auth()->user();
