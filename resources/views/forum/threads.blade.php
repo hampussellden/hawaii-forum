@@ -1,6 +1,12 @@
 <p>here are some threads</p>
+
 <main>
-    @foreach ($threads as $thread)
-    <h4><a href="/{{$category}}/{{$thread->id}}">{{$thread->title}}</a></h4>
+    <h2>{{Str::ucfirst($category->name)}}</h2>
+@foreach ($threads as $thread)
+    <h4>
+        <a href="/posts/{{$thread->id}}">
+            {{$thread->title}}
+        </a>
+    </h4>
 @endforeach
 </main>

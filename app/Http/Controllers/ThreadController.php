@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
 {
@@ -33,9 +36,16 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(String $id)
     {
-        //
+        $user = auth()->user();
+        $threads = DB::select('select * from threads where category_id = :id', ['id' => $id]);
+        return view('forum.threads', [
+            'user' => $user,
+            'threads' => $threads,
+            'category_id' => $id,
+            'category' => Category::where('id', $id)->first(),
+        ]);
     }
 
     /**

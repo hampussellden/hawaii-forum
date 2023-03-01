@@ -20,7 +20,7 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password']);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return Redirect::intended('home');
+            return Redirect::intended('categories');
         }
         return Redirect::back()->withErrors(['errors' => 'Something went wrong, please try again!']);
     }

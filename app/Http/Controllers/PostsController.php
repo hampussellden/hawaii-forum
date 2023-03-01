@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
+use App\Models\Thread;
+use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = auth()->user();
-        return view('categories', [
-            'user' => $user,
-            'categories' => Category::get(),
-        ]);
+        //
     }
 
     /**
@@ -43,9 +40,14 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $user = auth()->user();
-        return view('categories', [
+        $posts = DB::table('posts')->where('thread_id', $id)->skip(1)->take(25)->get();
+        return view('thread.posts', [
             'user' => $user,
-            'categories' => Category::first($id),
+            'posts' => $posts,
+            'thread' => Thread::where('id', $id)->first(),
+            'original' => Post::where('thread_id', $id)->first(),
+            'category_id' => $id,
+            'category' => Category::where('id', $id)->first(),
         ]);
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ThreadsPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterUserController;
@@ -44,6 +45,7 @@ Route::get('logout', LogoutController::class);
 
 
 //Resource controllers
-Route::resource('/categories/{category}/threads/{thread}', ThreadController::class)->middleware('auth');
+Route::resource('/posts', PostsController::class)->middleware('auth');
+Route::resource('/threads', ThreadController::class)->middleware('auth');
 Route::resource('/categories', CategoryController::class)->middleware('auth');
-Route::resource('categories.threads', ThreadController::class)->middleware('auth');
+// Route::resource('categories.threads', ThreadController::class)->middleware('auth');
