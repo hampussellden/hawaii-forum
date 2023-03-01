@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -23,6 +24,7 @@ class ThreadsPageController extends Controller
             return view("forum.threads", [
                 'user' => $user,
                 'threads' => $threads,
+                'category' => $request->path()
             ]);
         }
     }

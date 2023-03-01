@@ -1,8 +1,6 @@
 <p>here are some threads</p>
 <main>
     @foreach ($threads as $thread)
-    <article>
-        <h4>{{$thread->name}}</h4>
-    </article>
+    <h4><a href="/{{$category}}/{{$thread->id}}">{{$thread->title}}</a></h4>
 @endforeach
 </main>

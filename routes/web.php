@@ -6,6 +6,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ThreadsPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\SingleThreadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,4 @@ Route::get('logout', LogoutController::class);
 Route::get('home', HomePageController::class)->middleware('auth');
 Route::get('/login')->middleware('guest');
 Route::get('/forum/{category}', ThreadsPageController::class)->middleware('auth');
+Route::get('/forum/{category}/{thread}', SingleThreadController::class)->middleware('auth');
