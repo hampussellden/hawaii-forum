@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Thread;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +20,7 @@ class CategoryController extends Controller
         return view('categories', [
             'user' => $user,
             'categories' => Category::get(),
+            'latestThreads' => Thread::orderBy('updated_at', 'asc')->limit(5)->get()
         ]);
     }
 
