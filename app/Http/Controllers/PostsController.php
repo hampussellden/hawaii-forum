@@ -40,13 +40,14 @@ class PostsController extends Controller
     public function show(string $id)
     {
         $user = auth()->user();
-        $posts = DB::table('posts')->where('thread_id', $id)->skip(1)->take(25)->get();
+        $posts = DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')->where('thread_id', $id)->get();
+        // $posts = DB::table('posts')->where('thread_id', $id)->skip(1)->take(25)->get();
+
         return view('thread.posts', [
             'user' => $user,
             'posts' => $posts,
             'thread' => Thread::where('id', $id)->first(),
-            'original' => Post::where('thread_id', $id)->first(),
-            'category_id' => $id,
+            // 'original' => Post::where('thread_id', $id)->first(),
             'category' => Category::where('id', $id)->first(),
         ]);
     }
