@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Thread;
-use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
@@ -41,13 +40,11 @@ class PostsController extends Controller
     {
         $user = auth()->user();
         $posts = DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')->where('thread_id', $id)->get();
-        // $posts = DB::table('posts')->where('thread_id', $id)->skip(1)->take(25)->get();
 
         return view('thread.posts', [
             'user' => $user,
             'posts' => $posts,
             'thread' => Thread::where('id', $id)->first(),
-            // 'original' => Post::where('thread_id', $id)->first(),
             'category' => Category::where('id', $id)->first(),
         ]);
     }

@@ -8,40 +8,29 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ThreadsPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterUserController;
-use App\Http\Controllers\SingleThreadController;
 use App\Http\Controllers\ThreadController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 // //Primary view
 Route::view('/', 'index')->name('login')->middleware('guest');
+Route::redirect('home', 'categories')->middleware('auth');
+Route::redirect('login', 'categories')->middleware('auth');
+Route::redirect('register', 'categories')->middleware('auth');
+
 
 // //Register view
-Route::view('/register', 'register');
+Route::view('register', 'register')->middleware('guest');
 Route::post('register-user', RegisterUserController::class);
 
 // //Login
 Route::post('login', LoginController::class);
 
-
 // //Logout
 Route::get('logout', LogoutController::class);
 
 // //Views
-// Route::get('/login')->middleware('guest');
-// Route::get('/forum/{category}', ThreadsPageController::class)->middleware('auth');
-// Route::get('/forum/{category}/{thread}', SingleThreadController::class)->middleware('auth');
 
-//new Routes
+// //Routes
 
 
 //Resource controllers
