@@ -28,13 +28,14 @@ Route::get('logout', LogoutController::class);
 
 // //Views
 Route::view('/newthread', 'newthread')->middleware('auth');
-// //Routes
 
+// //Routes
 
 //Resource controllers
 Route::resource('/posts', PostsController::class)->middleware('auth');
 Route::resource('/threads', ThreadController::class)->middleware('auth');
 Route::resource('/categories', CategoryController::class)->middleware('auth');
+Route::resource('categories.threads', ThreadController::class)->middleware('auth');
 
 // Kolla nested resource för {categori},thread, controller:clas
 

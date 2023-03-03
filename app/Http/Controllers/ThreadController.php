@@ -23,8 +23,21 @@ class ThreadController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
+        return view('thread.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required'
+        ]);
         $input = $request->input();
 
         $thread = new Thread();
@@ -34,7 +47,7 @@ class ThreadController extends Controller
         $title = $input['title'];
         $content = $input['content'];
 
-        $thread->category_id = 1;
+        $thread->category_id = $input['category_id'];
         $post->thread_id = $thread->id;
 
         $thread->title = $title;
@@ -44,14 +57,7 @@ class ThreadController extends Controller
 
         $thread->save();
         $post->save();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('categories');
     }
 
     /**
