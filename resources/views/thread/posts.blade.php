@@ -5,8 +5,8 @@
         <div class="flex flex-col border-solid border-2 border-black bg-slate-100">
             @if ($loop->first)
             <div class="flex flex-row gap-6 bg-orange-400">
-                <h3>{{$post->title}}</h3>
-                <p>From: {{Str::ucfirst($post->name)}}</p>
+                <p>{{Str::ucfirst($post->name)}}</p>
+                <p> {{@substr($post->created_at, 0,16)}}</p>
             </div>
             <div class="p-4">
                 <p>{{$post->content}}</p>
@@ -15,8 +15,8 @@
         @continue
         @endif
             <div class="flex flex-row gap-6 bg-slate-300">
-                <h4>{{$post->title}}</h4>
-                <p>From: {{Str::ucfirst($post->name)}}</p>
+                <p>{{Str::ucfirst($post->name)}}</p>
+                <p> {{@substr($post->created_at, 0,16)}}</p>
             </div>
             <div class="p-4">
                 <p>{{$post->content}}</p>

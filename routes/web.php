@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostsController;
@@ -28,7 +27,7 @@ Route::post('login', LoginController::class);
 Route::get('logout', LogoutController::class);
 
 // //Views
-
+Route::view('/newthread', 'newthread')->middleware('auth');
 // //Routes
 
 
@@ -36,4 +35,10 @@ Route::get('logout', LogoutController::class);
 Route::resource('/posts', PostsController::class)->middleware('auth');
 Route::resource('/threads', ThreadController::class)->middleware('auth');
 Route::resource('/categories', CategoryController::class)->middleware('auth');
+
+// Kolla nested resource för {categori},thread, controller:clas
+
+
+
+
 // Route::resource('categories.threads', ThreadController::class)->middleware('auth');

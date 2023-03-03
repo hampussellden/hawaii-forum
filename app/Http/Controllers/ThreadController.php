@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Thread;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
@@ -20,9 +23,27 @@ class ThreadController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $input = $request->input();
+
+        $thread = new Thread();
+        $post = new Post();
+
+        $user_id = Auth::id();
+        $title = $input['title'];
+        $content = $input['content'];
+
+        $thread->category_id = 1;
+        $post->thread_id = $thread->id;
+
+        $thread->title = $title;
+        $post->content = $content;
+        $post->user_id = $user_id;
+        $post->title = $title;
+
+        $thread->save();
+        $post->save();
     }
 
     /**

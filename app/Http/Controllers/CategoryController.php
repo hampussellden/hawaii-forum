@@ -20,7 +20,7 @@ class CategoryController extends Controller
         return view('categories', [
             'user' => $user,
             'categories' => Category::get(),
-            'latestThreads' => Thread::orderBy('updated_at', 'asc')->limit(5)->get()
+            'latestThreads' => Thread::orderBy('updated_at', 'desc')->limit(5)->get()
         ]);
     }
 

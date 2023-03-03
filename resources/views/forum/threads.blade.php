@@ -8,5 +8,10 @@
             {{$thread->title}}
         </a>
     </h4>
-@endforeach
+    @endforeach
+   
+        <a href="/newthread">
+            <button>Create Thread</button>
+        </a>
+
 </main>
