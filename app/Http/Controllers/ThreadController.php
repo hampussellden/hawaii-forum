@@ -36,28 +36,27 @@ class ThreadController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
-            'category_id' => 'required'
+            'category' => 'required'
         ]);
         $input = $request->input();
 
+        $user = auth()->user();
+        $category = $input['category'];
+
         $thread = new Thread();
-        $post = new Post();
-
-        $user_id = Auth::id();
-        $title = $input['title'];
-        $content = $input['content'];
-
-        $thread->category_id = $input['category_id'];
-        $post->thread_id = $thread->id;
-
-        $thread->title = $title;
-        $post->content = $content;
-        $post->user_id = $user_id;
-        $post->title = $title;
-
+        $thread->title = $input['title'];
+        $thread->category_id = $category;
+        $thread->user_id = $user->id;
         $thread->save();
+
+        $post = new Post();
+        $post->title = $input['title'];
+        $post->content = $input['content'];
+        $post->thread_id = $thread->id;
+        $post->user_id = $user->id;
         $post->save();
-        return view('categories');
+
+        return redirect("threads/$category");
     }
 
     /**

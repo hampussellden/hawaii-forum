@@ -14,7 +14,7 @@
             <button>Create Thread</button>
         </a> --}}
 
-        <form method="post" action="/categories/{{$category}}/threads">
+        <form method="post" action="/categories/{{$category->id}}/threads">
             <label for="title">Thread Title</label>
             <input type="text" name="title" id="title">
 
