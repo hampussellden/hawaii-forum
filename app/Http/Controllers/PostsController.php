@@ -32,42 +32,22 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'content' => 'required'
+            'thread' => 'required',
+            'content' => 'required',
         ]);
 
         $input = $request->input();
 
+        $user = auth()->user();
+        $thread = $input['thread'];
 
-        echo $input['content'];
-        die;
+        $post = new Post();
+        $post->content = $input['content'];
+        $post->thread_id = $input['thread'];
+        $post->user_id = $user->id;
+        $post->save();
 
-        return view('thread.posts', []);
-        echo "hej";
-        // return redirect()->back();
-        // $this->validate($request, [
-        //     'title' => 'required',
-        //     'content' => 'required',
-        //     'category' => 'required'
-        // ]);
-        // $input = $request->input();
-
-        // $user = auth()->user();
-        // $category = $input['category'];
-
-        // $thread = new Thread();
-        // $thread->title = $input['title'];
-        // $thread->category_id = $category;
-        // $thread->user_id = $user->id;
-        // $thread->save();
-
-        // $post = new Post();
-        // $post->title = $input['title'];
-        // $post->content = $input['content'];
-        // $post->thread_id = $thread->id;
-        // $post->user_id = $user->id;
-        // $post->save();
-
-        // return redirect("threads/$category");
+        return redirect("posts/$thread");
     }
 
     /**

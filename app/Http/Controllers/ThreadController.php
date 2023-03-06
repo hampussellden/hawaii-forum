@@ -50,7 +50,6 @@ class ThreadController extends Controller
         $thread->save();
 
         $post = new Post();
-        $post->title = $input['title'];
         $post->content = $input['content'];
         $post->thread_id = $thread->id;
         $post->user_id = $user->id;
