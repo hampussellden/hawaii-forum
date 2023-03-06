@@ -1,5 +1,3 @@
-<p>here are some threads</p>
-
 <main>
     <h2>{{Str::ucfirst($category->name)}}</h2>
 @foreach ($threads as $thread)
@@ -9,10 +7,6 @@
         </a>
     </h4>
     @endforeach
-
-        {{-- <a href="/categories/{{$category->id}}/threads/create">
-            <button>Create Thread</button>
-        </a> --}}
 
         <form method="post" action="/categories/{{$category->id}}/threads">
             <label for="title">Thread Title</label>

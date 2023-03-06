@@ -9,37 +9,29 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\ThreadController;
 
 
-// //Primary view
+//Primary view
 Route::view('/', 'index')->name('login')->middleware('guest');
 Route::redirect('home', 'categories')->middleware('auth');
 Route::redirect('login', 'categories')->middleware('auth');
 Route::redirect('register', 'categories')->middleware('auth');
 
 
-// //Register view
+//Register view
 Route::view('register', 'register')->middleware('guest');
 Route::post('register-user', RegisterUserController::class);
 
-// //Login
+//Login
 Route::post('login', LoginController::class);
 
-// //Logout
+//Logout
 Route::get('logout', LogoutController::class);
 
-// //Views
+//Views
 Route::view('/newthread', 'newthread')->middleware('auth');
-
-// //Routes
 
 //Resource controllers
 Route::resource('/posts', PostsController::class)->middleware('auth');
 Route::resource('/threads', ThreadController::class)->middleware('auth');
 Route::resource('/categories', CategoryController::class)->middleware('auth');
 Route::resource('categories.threads', ThreadController::class)->middleware('auth');
-
-// Kolla nested resource för {categori},thread, controller:clas
-
-
-
-
-// Route::resource('categories.threads', ThreadController::class)->middleware('auth');
+Route::resource('threads.posts', PostsController::class)->middleware('auth');

@@ -23,4 +23,19 @@
             </div>
         </div>
     @endforeach
+
+
+    <form method="post" action="/threads/{{$thread->id}}/posts">
+        <input type="hidden" name="title" id="title" value="{{$thread->title}}">
+        <input type="hidden" name="thread" id="thread" value="{{$thread->id}}">
+
+        <input type="hidden" name="category" value="{{$category->id}}">
+
+        <label for="content">Enter your reply:</label>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+
+
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <button type="submit">REPLY</button>
+    </form>
 </main>
