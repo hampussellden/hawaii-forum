@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +8,5 @@
     @vite('resources/css/app.css')
     <title>Hawaii - Forum</title>
 </head>
-    <body class="mx-auto my-0 bg-slate-50">
-        <div class="container">
-            @yield('content')
-        </div>
-    </body>
-</html>
+    <body class="h-screen mx-auto my-0 bg-slate-50">
+        <div class="py-3 mx-3 lg:mx-16">
