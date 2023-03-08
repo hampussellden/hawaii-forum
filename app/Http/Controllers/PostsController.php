@@ -43,7 +43,7 @@ class PostsController extends Controller
 
         $post = new Post();
         $post->content = $input['content'];
-        $post->thread_id = $input['thread'];
+        $post->thread_id = $thread;
         $post->user_id = $user->id;
         $post->save();
 
