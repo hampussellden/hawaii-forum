@@ -26,9 +26,6 @@ Route::post('login', LoginController::class);
 //Logout
 Route::get('logout', LogoutController::class);
 
-//Views
-Route::view('/newthread', 'newthread')->middleware('auth');
-
 //Resource controllers
 Route::resource('/posts', PostsController::class)->middleware('auth');
 Route::resource('/threads', ThreadController::class)->middleware('auth');

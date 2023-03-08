@@ -56,7 +56,7 @@ class PostsController extends Controller
     public function show(string $id)
     {
         $user = auth()->user();
-        $posts = DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')->where('thread_id', $id)->orderBy('posts.id', 'asc')->get();
+        $posts = DB::table('posts')->select('users.name', 'posts.content', 'posts.created_at', 'posts.updated_at')->join('users', 'posts.user_id', '=', 'users.id')->where('thread_id', $id)->orderBy('posts.id', 'asc')->get();
 
         return view('thread.posts', [
             'user' => $user,
