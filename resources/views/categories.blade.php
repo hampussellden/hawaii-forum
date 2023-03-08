@@ -1,4 +1,4 @@
-<h2>Welcome {{$user->name}}</h2>
+<h2>Welcome {{$user->name}}!</h2>
 <a href="/logout"><button>LOGOUT</button></a>
 
 <main>
