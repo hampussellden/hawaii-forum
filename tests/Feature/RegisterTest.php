@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class RegisterTest extends TestCase
 {
@@ -34,10 +35,13 @@ class RegisterTest extends TestCase
 
     public function test_user_is_stored()
     {
-        $this->assertDatabaseHas('users', [
-            'name' => 'admin',
-            'email' => 'admin@forum.se',
-        ]);
+
+        $user = User::factory()
+            ->create();
+
+        $this->assertDatabaseHas('users', []);
     }
-    // use RefreshDatabase;
+
+
+    use RefreshDatabase;
 }

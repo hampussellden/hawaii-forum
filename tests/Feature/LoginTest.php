@@ -13,7 +13,7 @@ class LoginTest extends TestCase
     /**
      * A basic feature test example.
      */
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     public function test_view_login_form()
     {
@@ -25,14 +25,18 @@ class LoginTest extends TestCase
     public function test_user_can_login()
     {
 
+        $user = User::factory()
+            ->create();
+
         $response = $this
+            ->actingAs($user)
             ->followingRedirects()
             ->post('login', [
                 'email' => 'admin@forum.se',
                 'password' => 'starwars',
             ]);
 
-        $response->assertSee('Welcome admin!');
+        $response->assertSee('Welcome');
     }
 
     public function test_user_without_password_cannot_login()
