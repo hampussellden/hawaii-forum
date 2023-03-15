@@ -8,5 +8,5 @@
     @vite('resources/css/app.css')
     <title>Hawaii - Forum</title>
 </head>
-    <body class="h-screen mx-auto my-0 bg-slate-50">
+    <body class="min-h-screen mx-auto my-0 py-8 bg-slate-50">
         <div class="py-3 mx-3 lg:mx-16">

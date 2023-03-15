@@ -1,3 +1,4 @@
+@include('shared.header')
 <main>
     <h2>{{Str::ucfirst($category->name)}}</h2>
 @foreach ($threads as $thread)
@@ -7,7 +8,6 @@
         </a>
     </h4>
     @endforeach
-
         <form method="post" action="/categories/{{$category->id}}/threads">
             <label for="title">Thread Title</label>
             <input type="text" name="title" id="title">
@@ -21,3 +21,5 @@
             <button type="submit">Create Thread</button>
         </form>
 </main>
+
+@include('shared.footer')
